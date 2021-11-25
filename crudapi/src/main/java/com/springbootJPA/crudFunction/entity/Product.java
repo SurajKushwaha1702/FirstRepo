@@ -1,4 +1,5 @@
 package com.springbootJPA.crudFunction.entity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -6,8 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Product {
-
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -42,7 +42,6 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
 
 
 //    @Override

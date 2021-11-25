@@ -1,4 +1,4 @@
-package com.springbootJPA.crudFunction.repo;
+package com.springbootJPA.crudFunction.repository;
 
 import com.springbootJPA.crudFunction.entity.Product;
 import org.springframework.data.repository.CrudRepository;

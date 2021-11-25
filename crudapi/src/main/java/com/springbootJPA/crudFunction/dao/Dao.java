@@ -1,7 +1,7 @@
 package com.springbootJPA.crudFunction.dao;
 
 import com.springbootJPA.crudFunction.entity.Product;
-import com.springbootJPA.crudFunction.repo.ProductRepo;
+import com.springbootJPA.crudFunction.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DaoLayer {
+public class Dao {
     @Autowired
     private ProductRepo repo;
 
