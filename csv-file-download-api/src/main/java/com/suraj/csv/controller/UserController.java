@@ -32,7 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/users/export")
-    public void exportToCSV(HttpServletResponse response) throws IOException {
+    public void exportToCSV(HttpServletResponse response) {
+
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -43,15 +44,33 @@ public class UserController {
 
         List<User> listUsers = service.listAll();
 
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        ICsvBeanWriter csvWriter = null;
+        try {
+            csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String[] csvHeader = {"User ID", "Name", "Phone", "E-mail", "Country"};
         String[] nameMapping = {"id", "name", "phone", "email", "country"};
 
-        csvWriter.writeHeader(csvHeader);
+        try {
+            csvWriter.writeHeader(csvHeader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         for (User user : listUsers) {
-            csvWriter.write(user, nameMapping);
+            try {
+                csvWriter.write(user, nameMapping);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        csvWriter.close();
+
+        try {
+            csvWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
